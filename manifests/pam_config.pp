@@ -30,8 +30,9 @@ class duo_unix::pam_config inherits duo_unix::params {
     'RedHat': {
       augeas { 'Duo Security PAM Configuration':
         changes => [
-          "set ${aug_pam_path}/2/control ${duo_unix::params::pam_unix_control}",
-          "ins 100 after ${aug_pam_path}/2",
+          "set ${aug_pam_path}/*[type='auth'][module='pam_sss.so']/control ${duo_unix::params::pam_unix_control}",
+          "set ${aug_pam_path}/*[type='auth'][module='pam_sss.so']/argument[1] 'forward_pass'",
+          "ins 100 after ${aug_pam_path}/*[type='auth'][module='pam_sss.so']",
           "set ${aug_pam_path}/100/type auth",
           "set ${aug_pam_path}/100/control sufficient",
           "set ${aug_pam_path}/100/module ${duo_unix::params::pam_module}",
