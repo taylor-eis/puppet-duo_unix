@@ -6,6 +6,7 @@
 # @summary Default parameter values for the duo_unix module
 #
 class duo_unix::params {
+  $ensure_package     = 'present'
   $ensure             = 'present'
   $manage_pam         = true
   $manage_ssh         = true
