@@ -34,7 +34,7 @@ class duo_unix::pam_config inherits duo_unix::params {
           "set ${aug_pam_path}/*[type='auth'][module='pam_sss.so']/argument[1] 'forward_pass'",
           "ins 100 after ${aug_pam_path}/*[type='auth'][module='pam_sss.so']",
           "set ${aug_pam_path}/100/type auth",
-          "set ${aug_pam_path}/100/control sufficient",
+          "set ${aug_pam_path}/100/control '[success=1 default=ignore]'",
           "set ${aug_pam_path}/100/module ${duo_unix::params::pam_module}",
         ],
         require => Package[$duo_unix::params::duo_package],
