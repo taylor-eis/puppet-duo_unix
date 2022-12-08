@@ -97,7 +97,8 @@ class duo_unix (
   Boolean $manage_pam                         = $duo_unix::params::manage_pam,
   Boolean $manage_ssh                         = $duo_unix::params::manage_ssh,
   Boolean $manage_repo                        = $duo_unix::params::manage_repo,
-  Enum['latest', 'present', 'absent'] $ensure = $duo_unix::params::ensure,
+  Enum['latest', 'present', 'absent'] $ensure_package = $duo_unix::params::ensure_package,
+  Enum['present', 'absent'] $ensure = $duo_unix::params::ensure,
   Enum['no', 'yes'] $fallback_local_ip        = $duo_unix::params::fallback_local_ip,
   Enum['secure', 'safe'] $failmode            = $duo_unix::params::failmode,
   Enum['no', 'yes'] $pushinfo                 = $duo_unix::params::pushinfo,
@@ -118,7 +119,7 @@ class duo_unix (
   # being able to use a param for the resource name were wrong
   #
   package { $duo_unix::duo_package:
-    ensure => $ensure,
+    ensure => $ensure_package,
   }
 
   if ($duo_unix::usage == 'login') {
