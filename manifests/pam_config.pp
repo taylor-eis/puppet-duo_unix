@@ -9,6 +9,7 @@
 # @example
 #   include duo_unix::pam_config
 class duo_unix::pam_config inherits duo_unix::params {
+  require realmd
   $aug_pam_path = "/files${duo_unix::params::pam_file}"
   $aug_match    = "${aug_pam_path}/*/module[. = '${duo_unix::params::pam_module}']"
 
