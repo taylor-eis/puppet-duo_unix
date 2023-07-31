@@ -111,6 +111,8 @@ class duo_unix (
   Optional[String] $groups                    = undef,
   Boolean $show_diff                          = true,
 ) inherits duo_unix::params {
+  require subscription-manager
+  require yum
   if $manage_repo {
     include duo_unix::repo
   }
